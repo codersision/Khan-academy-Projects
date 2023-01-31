@@ -1,0 +1,28 @@
+/* What does the app's SQL look like? */
+create table natrella(login_id integer, first_name text,second_name text, age integer, date_of_birth real, email real, username text, password real, celebrate_wins text, affirm_yourself text, set_intention text, journal real, be_grateful text, say_thank_you text, accept_terms text);
+
+insert into natrella values(1, "Irene", "Sision", 22, "12/03/2022", "sisionirene@gmail.com", "sision", "irene_6064", "I finally finished the sql course on khan academy", "I'm capable of achieving i set my mind on", "I will finish the project and start creating projects", "dear diary","I'm grateful for my laptop", "thank you God for letting me see this day and for being there when i need you", "yes"); 
+
+insert into natrella values(2, "Irene", "David", 22, "12/03/2022", "sisionirene@gmail.com", "sision", "irene_6064", "I finally finished the sql course on khan academy", "I'm capable of achieving i set my mind on", "I will finish the project and start creating projects", "dear diary","I'm grateful for my laptop", "thank you God for letting me see this day and for being there when i need you", "yes"); 
+
+insert into natrella values(3, "Elizabeth", "Ndisya", 50, "12/03/2022", "elizabeth@gmail.com", "liz", "liz@3032", "I paid all my kid's school fees", "I'm capable of achieving i set my mind on", "I will finish the project and start creating projects", "dear liz","I'm grateful for my kids", "thank you God for letting me see this and may you guide me as I we start another school year", "yes");
+
+SELECT second_name, say_thank_you FROM natrella;
+update natrella set celebrate_wins= "I landed my first data analyst role" where login_id=2;
+select celebrate_wins from natrella;
+
+update natrella set date_of_birth="25-03-1975" where login_id=1;
+select date_of_birth from natrella;
+
+delete from natrella where login_id=2;
+select * from natrella;
+
+begin transaction;
+update natrella set accept_terms="no" where login_id=3;
+update natrella set username="irenesision" where login_id=1;
+commit;
+select accept_terms, username from natrella;
+
+alter table natrella add describe_your_day text;
+insert into natrella values(4, "Alex", "David", 30, "12/03/1992", "alex@gmail.com", "alexo", "alex_20", "I got accepted in tuk university", "It's never too late to go after your goals", "I will submit all my details to tuk for enrollment", "Today was a very fantastic day for me","I'm grateful for life", "thank you God for letting me see this day and for being there when i need you", "yes", "happy"); 
+select * from natrella;
