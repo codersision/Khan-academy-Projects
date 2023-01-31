@@ -1,0 +1,59 @@
+/* Create table about the people and what they do here */
+create table celebrities (id integer primary key autoincrement, name text, birth_year integer, country_of_origin text, partner_id  real);
+
+insert into celebrities(name, birth_year, country_of_origin, partner_id)
+ values ("Miley Cyrus", 1985, "United States", 4);
+insert into celebrities(name, birth_year, country_of_origin, partner_id) 
+ values ("Maureen Nkatha",1996, "Kenya", 3);
+insert into celebrities(name, birth_year, country_of_origin,partner_id)
+ values ("Redempta Momanyi",1996 , "Namibia",2);
+insert into celebrities(name, birth_year, country_of_origin,partner_id)
+ values ("Irene Sision", 2000, "United Kingdom", 1);
+insert into celebrities(name,birth_year, country_of_origin,partner_id)
+ values ("Miracle Mwendwa", 2010, "Mauritius",null);
+
+/** table of movies acted by celebrities"**/
+
+create table movies(id integer primary key autoincrement,
+celebrity_id integer, title text, release_year integer);
+
+insert into movies(celebrity_id, title, release_year)
+ values (1, "titanic", 1990);
+insert into movies(celebrity_id, title, release_year)
+ values (2, "sky rojo", 2021);
+insert into movies(celebrity_id, title, release_year)
+ values (2, "warrior nun", 2022);
+insert into movies(celebrity_id, title, release_year)
+ values (3, "the widow", 2001);
+ 
+/**finding out if the celebrities are married to each other"**/
+
+select celebrities.name, partner.name from celebrities
+ left outer join celebrities partner
+ on celebrities.partner_id=partner.id;
+
+/** find movies celebrities have featured in**/
+select celebrities.name, movies.title, movies.release_year from celebrities
+ join movies
+ on celebrities.id=movies.celebrity_id
+group by celebrity_id
+order by release_year desc;
+
+/** how fast did they join the acting industry**/
+select celebrities.birth_year, movies.release_year 
+from celebrities
+ left outer join movies
+ on celebrities.id=movies.celebrity_id
+ and case
+ when release_year-birth_year>10 then "joined late"
+ when release_year-birth_year<10 then "joined early"
+ else "null"
+ end;
+ 
+select name from celebrities where (2022-birth_year)>15 and birth_year>1990;
+/**started acting in movies after 10 years**/
+select celebrities.name, celebrities.birth_year, movies.release_year from celebrities
+  join movies
+  on celebrities.id=movies.celebrity_id
+  where (release_year-birth_year)>10;
+  
